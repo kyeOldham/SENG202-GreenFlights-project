@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team4.controller.MapTabController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="953.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="0.0" prefWidth="285.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <WebView fx:id="googleMapView" prefHeight="-1.0" prefWidth="-1.0" GridPane.rowSpan="2" />
+      <GridPane fx:id="airportFilterGrid" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="5.0" prefHeight="75.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="20.0" prefHeight="156.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="20.0" prefHeight="79.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="20.0" prefHeight="176.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="10.0" prefHeight="151.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="15.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="15.0" prefHeight="48.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="(Airport Per Country)" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXComboBox fx:id="airportCountryFilterCombobox" editable="true" focusColor="#32a42f" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Country" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="airportFilterLabel" text="Airport Filters" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label text="(From Airports Tab)" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXButton fx:id="refreshButtonAirport" buttonType="RAISED" onAction="#init" styleClass="button-refresh" stylesheets="@styles.css" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="40.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="airportApplyFilterButton" onAction="#airportApplyFilter" styleClass="button-filters" stylesheets="@styles.css" text="Apply Filters" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <JFXButton fx:id="showAllAirportsButton" onAction="#showSelectedAirports" styleClass="button-filters" stylesheets="@styles.css" text="Show Selected Airports" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <JFXButton onAction="#clearMap" styleClass="button-filters" stylesheets="@styles.css" text="Clear Map" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <GridPane fx:id="routeFilterGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="5.0" prefHeight="39.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="20.0" prefHeight="43.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="20.0" prefHeight="49.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="20.0" prefHeight="43.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" percentHeight="15.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="15.0" prefHeight="52.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <JFXComboBox fx:id="routeAirlineFilterCombobox" editable="true" focusColor="#298326" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Airline" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label text="(Routes Per Airline)" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="routeFilterLabel" text="Route Filters" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label text="(Routes Per Airport)" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXComboBox fx:id="routeAirportFilterCombobox" editable="true" focusColor="#298326" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Airport" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label text="(Routes Per Plane Type)" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXComboBox fx:id="routePlaneTypeFilterCombobox" editable="true" focusColor="#298326" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Plane Type" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label text="(From Routes Tab)" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXButton fx:id="refreshButtonRoute" buttonType="RAISED" onAction="#init" styleClass="button-refresh" stylesheets="@styles.css" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="50.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton fx:id="routeApplyFilterButton" onAction="#routeApplyFilter" styleClass="button-filters" stylesheets="@styles.css" text="Apply Filters" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <JFXButton fx:id="selectedRoutesButton" onAction="#showSelectedRoutes" styleClass="button-filters" stylesheets="@styles.css" text="Show Selected Routes" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <JFXButton onAction="#clearMap" styleClass="button-filters" stylesheets="@styles.css" text="Clear Map" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <GridPane GridPane.columnIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <JFXRadioButton fx:id="routeFilterRadio" selected="true" text="Route Filters" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <toggleGroup>
+               <ToggleGroup fx:id="filterSelection" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="airportFilterRadio" text="Airport Filters" toggleGroup="$filterSelection" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </JFXRadioButton>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

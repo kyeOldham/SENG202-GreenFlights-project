@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Map Demo</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map;
+    var gmarkers = [];
+    var paths = [];
+    var markerCluster;
+    var pathCoordList = [];
+    var airportCoordList = [];
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 25, lng: -10},
+            zoom: 1.6,
+            disableDefaultUI: true,
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_BOTTOM,
+            }});
+
+        makeClusters();
+
+    }
+
+
+    function addAirport(coordinates, title) {
+        var marker = new google.maps.Marker({
+            position: coordinates,
+            map: map,
+            title: title,
+            animation: google.maps.Animation.DROP,
+
+        });
+        airportCoordList.push(coordinates);
+        gmarkers.push(marker);
+    }
+
+    function addRoute(flightPath, title1, title2) {
+        addAirport(flightPath[0], title1);
+        addAirport(flightPath[flightPath.length - 1], title2);
+
+
+        path = new google.maps.Polyline({
+            path: flightPath,
+            geodesic: true,
+            strokeColor: '#298326',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        paths.push(path);
+        pathCoordList.push(flightPath);
+        path.setMap(map);
+    }
+
+    // Add a marker clusterer to manage the markers.
+    function makeClusters() {
+        markerCluster = new MarkerClusterer(map, gmarkers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    }
+
+    function clearMap() {
+        if (gmarkers.length > 0) {
+            for (var i=0; i<gmarkers.length; i++) {
+                if (gmarkers[i] != null) {
+                    gmarkers[i].setMap(null);
+                }
+            }
+        }
+        gmarkers = [];
+        if (paths.length > 0) {
+            for (var i=0; i<paths.length; i++) {
+                if (paths[i] != null) {
+                    paths[i].setMap(null);
+                }
+            }
+        }
+        paths = [];
+        pathCoordList = [];
+        airportCoordList = [];
+        markerCluster.clearMarkers();
+    }
+
+    function repositionMapByRoutes() {
+        var bounds = new google.maps.LatLngBounds();
+        for (i = 0; i < pathCoordList.length; i++) {
+            tempPath = pathCoordList[i];
+            for (var j = 0; j < tempPath.length; j++) {
+                bounds.extend(tempPath[j]);
+            }
+        }
+
+        map.fitBounds(bounds);
+    }
+
+    function repositionMapByAirports() {
+        var bounds = new google.maps.LatLngBounds();
+        for (i = 0; i < airportCoordList.length; i++) {
+            tempAirport = airportCoordList[i];
+            bounds.extend(tempAirport);
+
+        }
+
+        map.fitBounds(bounds);
+    }
+</script>
+<script src="https://unpkg.com/@google/markerclustererplus@5.1.0/dist/markerclustererplus.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX5qnyl3GH9aPHQmIV6QHt5TEu9Bu2M5w&callback=initMap"
+        async defer></script>
+</body>
+</html>

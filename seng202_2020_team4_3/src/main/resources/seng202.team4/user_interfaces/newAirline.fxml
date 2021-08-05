@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<GridPane minHeight="440.0" prefWidth="720.0" stylesheets="@styles.css" vgap="7.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team4.controller.NewAirline">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="15.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="50.0" />
+         </GridPane.margin></Text>
+      <JFXTextField fx:id="nameField" focusColor="#298326" labelFloat="true" promptText="Name" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="codeField" focusColor="#298326" labelFloat="true" promptText="Airline Alias" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="iataField" focusColor="#298326" labelFloat="true" promptText="IATA" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="icaoField" focusColor="#298326" labelFloat="true" promptText="ICAO" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="callSignField" focusColor="#298326" labelFloat="true" promptText="Call Sign" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField fx:id="countryField" focusColor="#298326" labelFloat="true" promptText="Primary Country" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXCheckBox fx:id="recentlyActiveField" prefHeight="30.0" prefWidth="150.0" text="Recently Active" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXCheckBox>
+      <JFXComboBox fx:id="setComboBox" focusColor="#298326" labelFloat="true" prefHeight="26.0" prefWidth="204.0" promptText="Set" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" />
+         </GridPane.margin>
+      </JFXComboBox>
+      <Label fx:id="editAddAirline" text="New Airline Record" GridPane.halignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <GridPane GridPane.rowIndex="10">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <JFXButton onAction="#confirm" prefWidth="100.0" styleClass="button-upload" text="Confirm" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
+            </JFXButton>
+            <JFXButton onAction="#cancel" prefWidth="100.0" style="-fx-background-color: #992626; -fx-text-fill: white;" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
+            </JFXButton>
+         </children>
+      </GridPane>
+      <Label fx:id="aliasToolTip" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets right="100.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="iataToolTip" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets right="100.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="icaoToolTip" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets right="100.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="callSignToolTip" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets right="100.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</GridPane>
